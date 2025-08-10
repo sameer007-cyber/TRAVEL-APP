@@ -1,0 +1,44 @@
+<% layout("/layouts/boilerplate") -%>
+
+<body>
+    <div class="row">
+    <div class="col-8">
+    <form method = "POST" action = "/listings" novalidate class="needs-validation">
+        <h3>Create New Listing</h3>
+        <br/><br/>
+        <div>
+            <lable for="title" class = "form-label">Title</lable>
+            <input type = "text" name = "listing[title]" placeholder="Enter Title" class = "form-control" required>
+            <div class="valid-feedback">Correct Title</div>
+        </div>
+        <br>
+        <div>
+            <lable for="description" class = "form-label">Description</lable>
+            <textarea name = "listing[description]" placeholder="Enter description" class="form-control" required></textarea>
+            <div class="invalid-feedback">Description should be valid</div>
+        </div>
+        <br>
+       <div>
+         <lable for="image" class = "form-label">Image Link</lable>
+         <input type = "text" name = "listing[image]"class = "form-control" placeholder="Enter Url of Image" >
+       </div>
+        <br>
+        <div>
+             <lable for="price" class = "form-label">Price</lable>
+             <input type = "text" name = "listing[price]"class="form-control" placeholder="Enter Price" required>
+            <div class="invalid-feedback">Price should be valid</div>
+        </div>
+        <br>
+        <div>
+        <lable for="location" class = "form-label">Location</lable>
+        <input type = "text" name = "listing[location]" placeholder="location"class="form-control" required>
+        </div><br/><br/>
+        <div>
+        <lable for="country" class = "form-label">Country</lable>
+        <input type = "text" name = "listing[country]" placeholder="country"class="form-control" required>
+        </div><br/><br/>
+        <button class="btn btn-dark">ADD</button>
+    </form>
+    </div>
+    </div>
+</body>

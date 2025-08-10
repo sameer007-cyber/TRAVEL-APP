@@ -1,0 +1,69 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="row mt-3">
+  <div class="col-8 offset-3">
+      <h3><li><%= listing.title %></li></h3>
+  </div>
+</div>
+<div class="card col-6 offset-3 show-card listing-card">
+<% if (listing.image && listing.image.url) { %>
+  <img src="<%= listing.image.url %>" class="card-img-top show-img"alt="Listing Image" width="400">
+<% } %>
+<div class="card-body">
+  <p class="card-text">
+    <% if (listing.owner && listing.owner.username) { %>
+      <%= listing.owner.username %>
+    <% } else { %>
+      Unknown Owner
+    <% } %>
+  </p>
+  <p class="card-text"><%= listing.description %></p>
+  <p class="card-text"><%= listing.location %></p>
+
+  <% if (typeof listing.price === 'number') { %>
+    <p class="card-text">$<%= listing.price %></p>
+  <% } %>
+</div>
+
+<div class="btns">
+<a class="btn btn-danger" href="/listings/<%= listing._id %>/edit">Edit </a>
+
+<form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
+  <button class="btn btn-dark">Delete</button>
+</form>
+</div>
+
+  <div class="col-8">
+    <h4>Leave a Review</h4>
+    <form action = "/listings/<%=listing.id%>/reviews" method="POST">
+      <div>
+        <label for = "rating">Rating</label>
+        <input class = "form-range"type = "range"min="1" max="5" id = "rating" name = "review[rating]">
+      </div>
+      <div>
+        <label for="comments">Comments</label>
+        <textarea name = "review[comment]" id = "comment" ></textarea>
+        <button class = "btn btn-dark">Submit</button>
+      </div>
+    </form>
+
+    <hr/>
+
+    <h4>All Reviews</h4>
+    <ul>
+      <% for(review of listing.reviews){%>
+        <div class="row">
+        <div class="card col-5 ms-3">
+          <div class="card-body">
+            <h5 class="card-title">Jane Doe</h5>
+            <p class="card-text"><%= review.comment %></p>
+            <p class="card-text"><%= review.rating%>stars</p>
+            <form class="mb-3" method = "POST"action = "/listings/<%= listing._id%>/reviews/<%= review._id%>?_method=DELETE">
+              <button class="btn btn-dark">Delete</button>
+            </form>
+          </div>
+        </div>
+      <%}%>
+      </div>
+    </ul>
+  </div>

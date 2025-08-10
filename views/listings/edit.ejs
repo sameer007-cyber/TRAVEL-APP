@@ -1,0 +1,35 @@
+<% layout("/layouts/boilerplate") -%>
+
+<body>
+    <div class="row">
+    <div class="col-8">
+    <form method = "POST"  action = "/listings/<%= listing.id%>?_method=PUT">
+        <div>
+        <lable for = "title" class = "form-label">Title</lable>
+        <input type = "text" name = "listing[title]" value="<%=listing.title %>">
+        </div>
+        <br>
+        <div>
+        <lable for = "description" class = "form-label">Description</lable>
+        <textarea name = "listing[description]"<%=listing.desciption%>></textarea>
+        </div><br>
+        <div>
+        <lable for = "image" class = "form-label">Image</lable>
+        <input type = "text" name = "listing[image]" value="<%=listing.image.url %>">
+        </div>
+        <br>
+        <div>
+        <lable for = "location" class = "form-label">Location</lable>
+        <input type = "text" name = "listing[location]" value="<%=listing.location %>">
+        </div>
+        <br>
+        <div>
+        <lable for = "country" class = "form-label">Country</lable>
+        <input type = "text" name = "listing[country]" value="<%=listing.country %>">
+        </div>
+        <button class="btn btn-dark">ADD</button>
+    </form>
+    </div>
+    </div>
+    
+</body>
